@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import AddToCart from "../component/AddToCart";
 
-
 const ProductList = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 6;
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -26,31 +27,67 @@ const ProductList = ({ onAddToCart }) => {
       });
   }, []);
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}>
-      {products.map((product) => (
-        <div
-          key={product.id}
-          style={{
-            border: "1px solid #ddd",
-            padding: "10px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+    <div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "20px" }}>
+        {currentProducts.map((product) => (
+          <div
+            key={product.id}
+            style={{
+              border: "1px solid #ddd",
+              padding: "10px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={product.image}
+              alt={product.title}
+              style={{ width: "100px", height: "100px" }}
+            />
+            <p>{product.title}</p>
+            <AddToCart product={product} onAddToCart={onAddToCart} />
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: "20px" }}>
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
         >
-          <img
-            src={product.image}
-            alt={product.title}
-            style={{ width: "100px", height: "100px" }}
-          />
-          <p>{product.title}</p>
-          <AddToCart product={product} onAddToCart={onAddToCart} />
-        </div>
-      ))}
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            style={{ margin: "0 5px" }}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
