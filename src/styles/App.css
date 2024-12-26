@@ -1,0 +1,45 @@
+body {
+  background-color: #333;
+}
+
+.app {
+  padding: 40px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.app h2 {
+  font-size: 32px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  
+}
+
+.app p {
+  font-size: 18px;
+  line-height: 1.8;
+  font-family: 'Open Sans', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.app a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+.app a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

@@ -1,0 +1,125 @@
+.shop-container {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  padding: 20px;
+  min-height: 100vh;
+  color: white;
+}
+
+.shop-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.shop-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.cart-section {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cart-title {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.empty-cart {
+  font-size: 18px;
+  color: #ff9800;
+  text-align: center;
+}
+
+.cart-details {
+  margin-top: 20px;
+}
+
+.cart-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-item p {
+  margin: 0;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.cart-item-title {
+  font-weight: bold;
+  font-size: 18px;
+  width: 40%; 
+}
+
+.cart-item-quantity, .cart-item-price, .cart-item-total {
+  font-size: 16px;
+  width: 20%;
+  text-align: center;
+}
+
+.cart-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-btn {
+  background-color: #2575fc;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.cart-btn:hover {
+  background-color: #6a11cb;
+}
+
+.total-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.go-to-cart-btn {
+  background-color: #ff9800;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.go-to-cart-btn:hover {
+  background-color: #ff5722;
+}

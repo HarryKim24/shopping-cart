@@ -1,8 +1,8 @@
 import App from "./App";
-import Cart from "./component/Cart";
-import Shop from "./component/Shop";
+import Shop from "./pages/Shop";
+import Cart from "./pages/Cart";
 
-const routes = [
+const Routes = [
   {
     path: "/",
     element: <App />,
@@ -17,4 +17,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default Routes;

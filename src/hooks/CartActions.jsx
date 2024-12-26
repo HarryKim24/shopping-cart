@@ -1,21 +1,50 @@
 import { useState } from "react";
 
 const CartActions = () => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(JSON.parse(sessionStorage.getItem("cart")) || []);
 
-  const addToCart = (product) => {
+  const addToCart = (product, quantity) => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === product.id);
-      if (existingProduct) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
+      const existingProductIndex = prevCart.findIndex((item) => item.id === product.id);
+      if (existingProductIndex !== -1) {
+        const updatedCart = [...prevCart];
+        updatedCart[existingProductIndex].quantity += Number(quantity);
+        return updatedCart;
+      } else {
+        return [...prevCart, { ...product, quantity: Number(quantity) }];
       }
-      return [...prevCart, { ...product, quantity: 1 }];
     });
   };
 
-  return { cart, addToCart };
+  const increaseQuantity = (id) => {
+    setCart((prevCart) => {
+      return prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    });
+  };
+
+  const decreaseQuantity = (id) => {
+    setCart((prevCart) => {
+      return prevCart.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+    });
+  };
+
+  const removeItem = (id) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
+
+  return {
+    cart,
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    removeItem,
+  };
 };
 
 export default CartActions;
