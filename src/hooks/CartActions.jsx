@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CartActions = () => {
   const [cart, setCart] = useState(JSON.parse(sessionStorage.getItem("cart")) || []);
+
+  useEffect(() => {
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (product, quantity) => {
     setCart((prevCart) => {
@@ -17,21 +21,21 @@ const CartActions = () => {
   };
 
   const increaseQuantity = (id) => {
-    setCart((prevCart) => {
-      return prevCart.map((item) =>
+    setCart((prevCart) =>
+      prevCart.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-    });
+      )
+    );
   };
 
   const decreaseQuantity = (id) => {
-    setCart((prevCart) => {
-      return prevCart.map((item) =>
+    setCart((prevCart) =>
+      prevCart.map((item) =>
         item.id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
-      );
-    });
+      )
+    );
   };
 
   const removeItem = (id) => {
