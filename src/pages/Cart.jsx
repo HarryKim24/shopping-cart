@@ -1,4 +1,4 @@
-import calculateTotal from "../utils/calculateTotal";
+import CalculateTotal from "../utils/CalculateTotal";
 import CartActions from "../hooks/CartActions";
 import NavigationBar from "../component/NavigationBar";
 import handleCheckout from "../utils/HandleCheckout";
@@ -35,7 +35,7 @@ const Cart = () => {
                 </li>
               ))}
             </ul>
-            <h3 className="total-price">Total: ${calculateTotal(cart)}</h3>
+            <h3 className="total-price">Total: ${CalculateTotal(cart)}</h3>
             <button className="checkout-btn" onClick={handleCheckout}>
               Proceed to Payment
             </button>
