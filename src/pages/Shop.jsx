@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import CartActions from "../hooks/CartActions";
 import ProductList from "../hooks/ProductList";
-import calculateTotal from "../utils/calculateTotal";
+import CalculateTotal from "../utils/CalculateTotal";
 import NavigationBar from "../component/NavigationBar";
 import "../styles/Shop.css";
 
@@ -37,7 +37,7 @@ const Shop = () => {
                     </li>
                   ))}
                 </ul>
-                <h3 className="total-price">Total: ${calculateTotal(cart)}</h3>
+                <h3 className="total-price">Total: ${CalculateTotal(cart)}</h3>
               </div>
             )}
             <Link to="/cart">
